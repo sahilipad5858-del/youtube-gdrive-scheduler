@@ -1,4 +1,4 @@
-const state = { videos: [], schedule: {}, verified: false, google: {}, youtube: {} };
+let state = { videos: [], schedule: {}, verified: false, google: {}, youtube: {} };
 
 const $ = (id) => document.getElementById(id);
 
