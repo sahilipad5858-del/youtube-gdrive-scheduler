@@ -8,6 +8,7 @@ from pathlib import Path
 from urllib.parse import urlencode
 
 import requests as google_requests
+from dotenv import load_dotenv
 from flask import Flask, jsonify, request, send_from_directory
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request as GoogleRequest
@@ -16,6 +17,7 @@ from googleapiclient.discovery import build
 app = Flask(__name__, static_folder="static")
 
 BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR / ".env")
 DATA_DIR = BASE_DIR / "data"
 STATE_FILE = DATA_DIR / "state.json"
 
