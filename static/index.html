@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drive → YouTube Auto Scheduler</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>📹 Drive → YouTube Auto Scheduler</h1>
+    <p>Upload videos from Google Drive to YouTube with custom SEO metadata and hourly scheduling.</p>
+  </header>
+
+  <section class="status-grid">
+    <div class="card"><div class="label">Google Drive</div><div class="value" id="drive-status">Checking...</div></div>
+    <div class="card"><div class="label">YouTube</div><div class="value" id="youtube-status">Checking...</div></div>
+    <div class="card"><div class="label">YouTube Verification</div><div class="value" id="verify-status">Not verified</div></div>
+    <div class="card"><div class="label">Scheduler</div><div class="value" id="sched-status">Off</div></div>
+  </section>
+
+  <section id="section-connect">
+    <h2>1. Connect Google</h2>
+    <button id="btn-connect">Connect Google Drive + YouTube</button>
+    <p id="connect-note">OAuth via Google Cloud Console. Requires GOOGLE_OAUTH_CLIENT_ID / SECRET env vars.</p>
+  </section>
+
+  <section id="section-videos">
+    <h2>2. Select Videos from Google Drive</h2>
+    <div class="row">
+      <input id="folder-id" placeholder="Drive folder ID (optional)" />
+      <button id="btn-load-videos">Load videos</button>
+    </div>
+    <div id="drive-video-list" class="list"></div>
+    <button id="btn-add-selected" disabled>Add selected to queue</button>
+  </section>
+
+  <section id="section-queue">
+    <h2>3. Queue & Metadata (Title / Tags / Description / SEO)</h2>
+    <div id="queue-list" class="list"></div>
+  </section>
+
+  <section id="section-schedule">
+    <h2>4. Schedule</h2>
+    <div class="row">
+      <label><input type="checkbox" id="sched-enabled" /> Enable hourly scheduler</label>
+    </div>
+    <div class="row">
+      <label>Every (minutes): <input type="number" id="sched-interval" value="60" min="1" /></label>
+      <label>Batch size (videos per slot): <input type="number" id="sched-batch" value="1" min="1" /></label>
+      <label>Start at: <input type="datetime-local" id="sched-start" /></label>
+    </div>
+    <button id="btn-apply-schedule">Apply Schedule</button>
+  </section>
+
+  <section id="section-verify">
+    <h2>5. YouTube Verification</h2>
+    <button id="btn-verify">Mark as Verified</button>
+    <p id="verify-note">You must complete <b>Channel verification</b> inside YouTube Studio before scheduled public uploads.</p>
+  </section>
+
+  <div id="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
